@@ -1,22 +1,20 @@
 @extends("layouts.app")
 @section("content")
-<div class="container" style="max-width: 800px">
-    @foreach ($articles as $article)
-        <div class="card mb-3">
-            <div class="card-body">
+<div class="container" style="max-width: 700px;">
+        <div class="card mb-2 border-primary">
+            <div class="card-body mb-3">
                 <h3 class="card-title mb-4">
                     {{$article->title}}
                 </h3>
-                <div class="text-muted mb-3">
+                <div class="text-muted mb-2">
                     {{$article->created_at}}
 
                 </div>
-                <div class="mb-4">
+                <div class="mb-3">
                     {{$article->body}}
                 </div>
-                <a href={{url("articles/detail/$article->id")}}>View Detail</a>
+                <a href={{url("articles/delete/$article->id")}} class="btn btn-sm btn-outline-danger">Delete</a>
             </div>
         </div>
-    @endforeach
 </div>
 @endsection
