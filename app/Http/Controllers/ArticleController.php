@@ -12,8 +12,25 @@ class ArticleController extends Controller
        return view("articles.index",["articles" => $data]);
            
     }
+    public function add(){
+        return view("articles.add");
+    }
     public function detail($id){
         $data = Article::find($id);
         return view("articles.detail" , ["article" => $data]);
+    }
+    public function delete($id){
+        $data = Article::find($id);
+        $data->delete();
+        return redirect("/articles")->with("info" , "Deleted Article");
+    }
+    public function create(){
+       $article = new Article();
+       $article->title = request("title");
+       $article->body = request("body");
+       $article->category_id = request("category_id");
+       $article->save();
+
+        return redirect("/articles");
     }
 }
