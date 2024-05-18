@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
     public function index(){
-        $categories = Category::all();
         $data = Article::latest()->paginate(5);
-        return view("articles.index",["articles" => $data] , ["categories" => $categories]);
-           
+        return view("articles.index",["articles" => $data]);
+        
     }
     
     public function add(){
-        return view("articles.add");
+        $categories = Category::all();
+        return view("articles.add",["categories" => $categories]);
     }
     
     public function editForm($id){
