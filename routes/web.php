@@ -19,6 +19,10 @@ Route::post("/articles/add" , [ArticleController::class , "create"]);
 Route::post("/comment/add" , [CommentController::class , "create"]);
 Route::get("/comments/delete/{id}" , [CommentController::class , "delete"]);
 
+Route::get("/articles/edit/{id}" , [ArticleController::class , "editForm"]);
+Route::post("/articles/edit/{id}" , [ArticleController::class , "edit"]);
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -30,6 +30,7 @@
                     {{$article->body}}
                 </div>
                 <a href={{url("articles/delete/$article->id")}} class="btn btn-sm btn-outline-danger">Delete</a>
+                <a href={{url("articles/edit/$article->id")}} class="btn btn-sm btn-outline-primary ms-3">Edit</a>
             </div>
         </div>
         <ul class="list-group mt-4">
