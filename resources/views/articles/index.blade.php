@@ -13,6 +13,10 @@
                     {{$article->title}}
                 </h3>
                 <div class="text-muted mb-3">
+                    <b>Category : </b>
+                    {{$article->category->name}}
+                    <b>Comment : </b>
+                    {{count($article->comments)}}
                     {{$article->created_at}}
 
                 </div>
@@ -24,5 +28,6 @@
         </div>
     @endforeach
     {{$articles->links()}}
+    
 </div>
 @endsection
