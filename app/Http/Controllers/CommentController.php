@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     public function  create(){
+        
+        $validator = validator(request()->all(), [
+            "content" => "required"
+        ]);
+        if($validator->fails()){
+            return back()->withErrors($validator);
+        }
         $comment= new Comment;
         $comment->content = request()->content;
         $comment->article_id = request()->article_id;
@@ -18,6 +25,6 @@ class CommentController extends Controller
        $comment = Comment::find($id);
        $comment->delete();
 
-       return back();
+       return back()->with("info", "Comment Deleted");
     }
 }

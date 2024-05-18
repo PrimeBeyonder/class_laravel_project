@@ -1,6 +1,20 @@
 @extends("layouts.app")
 @section("content")
 <div class="container" style="max-width: 700px;">
+
+    @if (session("info"))
+        <div class="alert alert-info">
+            {{session("info")}}
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-warning">
+            @foreach ($errors->all() as $err )
+            {{$err}}
+            @endforeach
+        </div>
+    @endif
+
         <div class="card mb-2 border-primary">
             <div class="card-body mb-3">
                 <h3 class="card-title mb-4">
