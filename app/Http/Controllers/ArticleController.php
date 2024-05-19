@@ -56,6 +56,7 @@ class ArticleController extends Controller
        $article->title = request("title");
        $article->body = request("body");
        $article->category_id = request("category_id");
+       $article->user_id = auth()->id();
        $article->save();
 
         return redirect("/articles");
@@ -77,6 +78,6 @@ class ArticleController extends Controller
        $article->category_id = request("category_id");
        $article->save();
 
-        return redirect("/articles");
+        return redirect("/articles")->with('info' , 'Article Edited');
     }
 }

@@ -14,9 +14,11 @@
                 </h3>
                 <div class="text-muted mb-3">
                     <b>Category : </b>
-                    {{$article->category->name}}
+                    {{$article->category->name}}<br>
                     <b>Comment : </b>
-                    {{count($article->comments)}}
+                    {{count($article->comments)}}<br>
+                    <b>User : </b>
+                    <b class="text-success">{{$article->user->name}}</b> <br>
                     {{$article->created_at}}
 
                 </div>

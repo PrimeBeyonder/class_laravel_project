@@ -18,11 +18,13 @@
         <div class="card mb-2 border-primary">
             <div class="card-body mb-3">
                 <h3 class="card-title mb-4">
-                    {{$article->title}}
+                    {{$article->title}} <br>
                 </h3>
                 <div class="text-muted mb-2">
                     <b>Category : </b>
-                    {{$article->category->name}}  
+                    {{$article->category->name}}  <br>
+                    <b>User : </b>
+                    <b class="text-success">{{$article->user->name}}</b> <br>
                     {{$article->created_at}}
 
                 </div>
@@ -40,6 +42,7 @@
             @foreach ($article->comments as $comment )
                 <li class="list-group-item">
                     <a href={{url("/comments/delete/$comment->id")}} class="btn-close float-end"></a>
+                    <b class="text-success">{{$comment->user->name}}</b> <br>
                     {{$comment->content}}
                 </li>
             @endforeach
@@ -47,6 +50,7 @@
         <form action={{url("/comment/add")}} method="post">
         @csrf
         <input type="hidden" name="article_id" value="{{$article->id}}">
+        <input type="hidden" name="user_id" value="{{$article->user_id}}">
         <textarea name="content" class="form-control my-4"></textarea>
         <button class="btn btn-secondary">Add Comment</button>
         </form>
