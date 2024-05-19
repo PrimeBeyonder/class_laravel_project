@@ -22,7 +22,7 @@
         <label for="">Category</label>
         <select name="category_id" class="form-select mb-2">
             @foreach ($categories as $category)
-            <option value="{{$category->id}}">{{$article->category->name}}</option>
+            <option value="{{$category->id}}">{{$category->name}}</option>
             @endforeach
         </select>
         <button class="btn mt-3 btn-primary">Edit Article</button>
