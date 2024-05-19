@@ -31,8 +31,13 @@
                 <div class="mb-3">
                     {{$article->body}}
                 </div>
+                @auth
+                @can("delete-article", $article)
                 <a href={{url("articles/delete/$article->id")}} class="btn btn-sm btn-outline-danger">Delete</a>
                 <a href={{url("articles/edit/$article->id")}} class="btn btn-sm btn-outline-primary ms-3">Edit</a>
+                @endcan
+                @endauth
+                
             </div>
         </div>
         <ul class="list-group mt-4">
@@ -41,18 +46,26 @@
             </li>
             @foreach ($article->comments as $comment )
                 <li class="list-group-item">
-                    <a href={{url("/comments/delete/$comment->id")}} class="btn-close float-end"></a>
+                    @auth
+                    @can("delete-comment" , $comment)
+                        <a href={{url("/comments/delete/$comment->id")}} class="btn-close float-end"></a>
+                    @endcan
+                    @endauth
+                   
                     <b class="text-success">{{$comment->user->name}}</b> <br>
                     {{$comment->content}}
                 </li>
             @endforeach
         </ul>
-        <form action={{url("/comment/add")}} method="post">
+        @auth
+            <form action={{url("/comment/add")}} method="post">
         @csrf
         <input type="hidden" name="article_id" value="{{$article->id}}">
         <input type="hidden" name="user_id" value="{{$article->user_id}}">
         <textarea name="content" class="form-control my-4"></textarea>
         <button class="btn btn-secondary">Add Comment</button>
-        </form>
+        </form> 
+        @endauth
+       
 </div>
 @endsection
