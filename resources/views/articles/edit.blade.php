@@ -23,6 +23,7 @@
         <select name="category_id" class="form-select mb-2">
             @foreach ($categories as $category)
             <option value="{{$category->id}}">{{$category->name}}</option>
+            @selected($article->category_id == $category->id);
             @endforeach
         </select>
         <button class="btn mt-3 btn-primary">Edit Article</button>
