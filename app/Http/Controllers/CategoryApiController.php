@@ -12,7 +12,7 @@ class CategoryApiController extends Controller
      */
     public function index()
     {
-        //
+        return Category::all();
     }
 
     /**
@@ -20,7 +20,13 @@ class CategoryApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(request()->name == ""){
+            return response(['msg' => "name required"] , 400);
+        }
+        $category = new Category;
+        $category->name = request()->name;
+        $category->save();
+        return $category;
     }
 
     /**
@@ -28,7 +34,7 @@ class CategoryApiController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return $category;
     }
 
     /**
@@ -36,7 +42,12 @@ class CategoryApiController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        if(request()->name == ""){
+            return response(['msg' => "name required"] , 400);
+        }
+        $category->name = request()->name;
+        $category->save();
+        return $category;
     }
 
     /**
@@ -44,6 +55,7 @@ class CategoryApiController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return $category;
     }
 }
