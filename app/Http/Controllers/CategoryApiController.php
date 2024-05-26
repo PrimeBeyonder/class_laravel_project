@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CategoryApiController extends Controller
 {
+
+    public function __construct()
+    {
+     $this->middleware("auth:sanctum");   
+    }
     /**
      * Display a listing of the resource.
      */
@@ -45,6 +50,7 @@ class CategoryApiController extends Controller
         if(request()->name == ""){
             return response(['msg' => "name required"] , 400);
         }
+        
         $category->name = request()->name;
         $category->save();
         return $category;
@@ -59,3 +65,7 @@ class CategoryApiController extends Controller
         return $category;
     }
 }
+
+
+//fist() --user data--
+//get()  --json array--
